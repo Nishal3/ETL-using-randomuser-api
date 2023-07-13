@@ -28,8 +28,9 @@ if __name__ == "__main__":
                 continue
             else:
                 val = event.value().decode("utf-8")
+                key = event.key()
                 partition = event.partition()
-                print(f"Received {val} from partition {partition}")
+                print(f"Received {key=}{val=} from partition {partition}")
                 consumer.commit(event)
     except KeyboardInterrupt:
         print("Interrupted by user.")
