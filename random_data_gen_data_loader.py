@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from sqlalchemy import text
 import sys
 import os
 
@@ -10,7 +11,20 @@ def data_loader(data, db_url=None):
     data_keys = list(list(data.values())[0].keys())
     data_vals = list(list(data.values())[0].values())
 
-    data_vals = ", ".join([f"'{i}'" for i in data_vals])
+    # for i in range(len(data_vals)):
+    #     if isinstance(data_vals[i], str):
+    #         continue
+    #     if isinstance(data_vals[i], int):
+    #         continue
+
+    #     data_vals[i] = f"ARRAY{data_vals[i]}"
+
+    data_vals = ", ".join(
+        [
+            f"'{i}'" if isinstance(i, int) or isinstance(i, str) else f"ARRAY{i}"
+            for i in data_vals
+        ]
+    )
 
     if MODE:
         if db_url is None:
@@ -25,7 +39,8 @@ def data_loader(data, db_url=None):
     connection = engine.connect()
     print(f"Table: {table}, Columns: {data_keys}, Values: {data_vals}")
     connection.execute(
-        f"INSERT INTO {table} ({', '.join(data_keys)}) VALUES ({data_vals})"
+        text(f"INSERT INTO {table} ({', '.join(data_keys)}) VALUES ({data_vals})")
     )
 
+    connection.commit()
     connection.close()

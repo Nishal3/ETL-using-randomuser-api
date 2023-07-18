@@ -51,14 +51,13 @@ if __name__ == "__main__":
             else:
                 data_dict = procure_data(event)
                 url = f"postgresql://postgres:{PASSWORD}@192.168.0.249:5432/test"
-                print(url)
-                data_loader(
-                    data_dict,
-                    url,
-                )
+                # data_loader(
+                #     data_dict,
+                #     url,
+                # )
                 partition = event.partition()
                 # print(f"Received {data_dict=} from partition {partition}")
-                # consumer.commit(event)
+                consumer.commit(event)
     except KeyboardInterrupt:
         print("Interrupted by user.")
     finally:
