@@ -8,11 +8,17 @@ import sys
 MODE = os.getenv("DEV")
 
 PASSWORD = None
+IP = None
 
 with open("kafka_config/password.txt", "r") as password:
     file_input = password.readline()
     if file_input:
         PASSWORD = file_input.rstrip("\n")
+
+with open("kafka_config/ip_address.txt", "r") as ip_address:
+    file_input = ip_address.readline()
+    if file_input:
+        IP = file_input.rstrip("\n")
 
 
 def set_configs():
@@ -50,11 +56,11 @@ if __name__ == "__main__":
                 continue
             else:
                 data_dict = procure_data(event)
-                url = f"postgresql://postgres:{PASSWORD}@192.168.0.249:5432/test"
-                # data_loader(
-                #     data_dict,
-                #     url,
-                # )
+                url = f"postgresql://postgres:{PASSWORD}@{IP}:5432/test"
+                data_loader(
+                    data_dict,
+                    url,
+                )
                 partition = event.partition()
                 # print(f"Received {data_dict=} from partition {partition}")
                 consumer.commit(event)
