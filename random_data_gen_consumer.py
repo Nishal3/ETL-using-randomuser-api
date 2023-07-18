@@ -1,12 +1,18 @@
 from confluent_kafka import Consumer
 from kafka_config.config import config
 import json
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 import os
+from random_data_gen_data_loader import data_loader
 import sys
 
 MODE = os.getenv("DEV")
+
+PASSWORD = None
+
+with open("kafka_config/password.txt", "r") as password:
+    file_input = password.readline()
+    if file_input:
+        PASSWORD = file_input.rstrip("\n")
 
 
 def set_configs():
@@ -29,27 +35,12 @@ def procure_data(event) -> dict:
     return final_dict
 
 
-def load_data(data=dict, host=None, username=None, password=None, database=None):
-    if host is None and username is None and password is None:
-        i, j = (list(data.keys())[0], list(data.values())[0])
-        print(i, "\n", j)
-        return
-    if None in [host, username, password]:
-        if host is None:
-            print("Please provide a host")
-        if username is None:
-            print("Please provide a username")
-        if password is None:
-            print("Please provide a password")
-        sys.exit(1)
-
-
 if __name__ == "__main__":
     set_configs()
     consumer = Consumer(config)
     consumer.subscribe(
         ["main", "login", "location", "identification", "image"],
-        on_assign=assignment_callback,
+        # on_assign=assignment_callback,
     )
 
     try:
@@ -59,10 +50,15 @@ if __name__ == "__main__":
                 continue
             else:
                 data_dict = procure_data(event)
-                load_data(data_dict, "localhost")
+                url = f"postgresql://postgres:{PASSWORD}@192.168.0.249:5432/test"
+                print(url)
+                data_loader(
+                    data_dict,
+                    url,
+                )
                 partition = event.partition()
-                print(f"Received {data_dict=} from partition {partition}")
-                consumer.commit(event)
+                # print(f"Received {data_dict=} from partition {partition}")
+                # consumer.commit(event)
     except KeyboardInterrupt:
         print("Interrupted by user.")
     finally:
