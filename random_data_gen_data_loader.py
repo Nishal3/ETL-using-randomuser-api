@@ -33,3 +33,8 @@ def data_loader(data, db_url=None):
 
     connection.commit()
     connection.close()
+
+if __name__ == "__main__":
+    engine = create_engine("postgresql://postgres:k7UlpPL%251E#e@192.168.0.249:5432/test")
+    conn = engine.connect()
+    

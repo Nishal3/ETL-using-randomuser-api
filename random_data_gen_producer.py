@@ -3,7 +3,9 @@ from kafka_config.config import config
 import requests
 import json
 import time
+import random
 import os
+import sys
 
 MODE = os.getenv("DEV")
 
@@ -188,17 +190,18 @@ def assemble_data(results) -> dict:
     return final
 
 
-def produce_data(time_seconds=0.1):
+def produce_data(api_link):
     # Producer Stuff
     producer = Producer(config)
 
     # API Stuff
     api_link = "https://randomuser.me/api/"
-    # print(thing.text)
-    time_start = time.time()
-    time_from_start = 0
+    # # print(thing.text)
+    # time_start = time.time()
+    # time_from_start = 0
 
-    while time_from_start < time_seconds:
+    # while time_from_start < 3600:
+    try:
         api = requests.get(api_link)
         random_person_data = json.loads(api.text)
         results = random_person_data["results"][0]
@@ -207,9 +210,23 @@ def produce_data(time_seconds=0.1):
 
         production_loop(producer, final_results)
 
-        time_from_start = time.time() - time_start
-    producer.flush()
+        # time_from_start = time.time() - time_start
+        producer.flush()
+    except:
+        sys.exit(1)
 
 
-if __name__ == "__main__":
-    produce_data()
+def production_scheduler():
+    data_throughput = random.randint(1, 3600)
+    time_to_next_fetch = 3590 / data_throughput
+    time_start = time.time()
+    time_til_start = 0
+    api_link = "https://randomuser.me/api/"
+    while time_til_start < 3600:
+        time.sleep(time_to_next_fetch)
+        produce_data(api_link)
+        time_til_start = time.time() - time_start
+
+
+# if __name__ == "__main__":
+#     produce_data()

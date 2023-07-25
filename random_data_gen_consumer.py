@@ -3,22 +3,35 @@ from kafka_config.config import config
 import json
 import os
 from random_data_gen_data_loader import data_loader
+import time
 import sys
 
 MODE = os.getenv("DEV")
 
+USERNAME = "postgres"
 PASSWORD = None
 IP = None
 
-with open("kafka_config/password.txt", "r") as password:
+with open(
+    "/home/ubuntu/ETL-using-randomuser-api/kafka_config/password.txt", "r"
+) as password:
     file_input = password.readline()
     if file_input:
         PASSWORD = file_input.rstrip("\n")
 
-with open("kafka_config/ip_address.txt", "r") as ip_address:
+with open(
+    "/home/ubuntu/ETL-using-randomuser-api/kafka_config/ip_address.txt", "r"
+) as ip_address:
     file_input = ip_address.readline()
     if file_input:
         IP = file_input.rstrip("\n")
+
+with open(
+    "/home/ubuntu/ETL-using-randomuser-api/kafka_config/username.txt", "r"
+) as username:
+    file_input = username.readline()
+    if file_input:
+        USERNAME = file_input.rstrip("\n")
 
 
 def set_configs():
@@ -41,7 +54,7 @@ def procure_data(event) -> dict:
     return final_dict
 
 
-if __name__ == "__main__":
+def consume_data():
     set_configs()
     consumer = Consumer(config)
     consumer.subscribe(
@@ -50,21 +63,28 @@ if __name__ == "__main__":
     )
 
     try:
-        while True:
+        time_start = time.time()
+        time_til_start = 0
+        while time_til_start < 10:
+            time_til_start = time.time() - time_start
             event = consumer.poll(1.0)
             if event is None:
                 continue
             else:
                 data_dict = procure_data(event)
-                url = f"postgresql://postgres:{PASSWORD}@{IP}:5432/test"
+                url = f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/test"
                 data_loader(
                     data_dict,
                     url,
                 )
                 partition = event.partition()
                 # print(f"Received {data_dict=} from partition {partition}")
-                consumer.commit(event)
+                # consumer.commit(event)
     except KeyboardInterrupt:
         print("Interrupted by user.")
     finally:
         consumer.close()
+
+
+if __name__ == "__main__":
+    consume_data()
