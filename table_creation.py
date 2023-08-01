@@ -26,15 +26,64 @@ with open(
     if file_input:
         USERNAME = file_input.rstrip("\n")
 
-print(f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/")
+print(f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/user_data")
 
-URL = f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/"
+URL = f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/user_data"
 
 engine = create_engine(URL, future=True)
 conn = engine.connect()
 conn.execute(text("commit"))
+query = "\
+    /* main */\
+	create table main (\
+		recordid serial,\
+		uuid varchar,\
+		location_coordinates text[],\
+		email varchar,\
+		thumbnail varchar\
+	);\
+\
+	/* login */\
+	create table login (\
+		uuid varchar,\
+		username varchar,\
+		password varchar\
+	);\
+\
+	/* location */\
+	create table location (\
+		location_coordinates text[],\
+		street_name varchar,\
+		street_number int,\
+		city varchar,\
+		state varchar,\
+		country varchar,\
+		post_code varchar,\
+		timezone varchar\
+	);\
+\
+	/* identification */\
+	create table identification (\
+		email varchar,\
+		id text[],\
+		name varchar,\
+		last_name varchar,\
+		gender varchar,\
+		phone varchar,\
+		cell varchar,\
+		nationality varchar,\
+		dob timestamp,\
+		registered timestamp\
+	);\
+\
+	/* image */\
+	create table image (\
+		thumbnail varchar,\
+		large varchar,\
+		medium varchar\
+	);"
 print("CONNECTED")
-conn.execute(text("CREATE DATABASE user_data;"))
+conn.execute(text(query))
 conn.commit()
 
 conn.close()

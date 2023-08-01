@@ -65,14 +65,14 @@ def consume_data():
     try:
         time_start = time.time()
         time_til_start = 0
-        while time_til_start < 10:
+        while time_til_start < 15:
             time_til_start = time.time() - time_start
             event = consumer.poll(1.0)
             if event is None:
                 continue
             else:
                 data_dict = procure_data(event)
-                url = f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/test"
+                url = f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/user_data"
                 data_loader(
                     data_dict,
                     url,

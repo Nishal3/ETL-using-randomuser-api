@@ -24,7 +24,7 @@ def data_loader(data, db_url=None):
         print("Please provide a database url")
         sys.exit(1)
 
-    engine = create_engine(db_url)
+    engine = create_engine(db_url, future=True)
     connection = engine.connect()
     print(f"Table: {table}, Columns: {data_keys}, Values: {data_vals}")
     connection.execute(

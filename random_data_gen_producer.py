@@ -217,16 +217,16 @@ def produce_data(api_link):
 
 
 def production_scheduler():
-    data_throughput = random.randint(1, 3600)
-    time_to_next_fetch = 3590 / data_throughput
+    data_throughput = random.randint(1, 300)
+    time_to_next_fetch = 295 / data_throughput
     time_start = time.time()
     time_til_start = 0
     api_link = "https://randomuser.me/api/"
-    while time_til_start < 3600:
+    while time_til_start < 300:
         time.sleep(time_to_next_fetch)
         produce_data(api_link)
         time_til_start = time.time() - time_start
 
 
-# if __name__ == "__main__":
-#     produce_data()
+if __name__ == "__main__":
+    produce_data("https://randomuser.me/api/")
