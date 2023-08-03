@@ -59,7 +59,7 @@ def consume_data():
     consumer = Consumer(config)
     consumer.subscribe(
         ["main", "login", "location", "identification", "image"],
-        # on_assign=assignment_callback,
+        on_assign=assignment_callback,
     )
 
     try:
@@ -78,8 +78,8 @@ def consume_data():
                     url,
                 )
                 partition = event.partition()
-                # print(f"Received {data_dict=} from partition {partition}")
-                # consumer.commit(event)
+                print(f"Received {data_dict=} from partition {partition}")
+                consumer.commit(event)
     except KeyboardInterrupt:
         print("Interrupted by user.")
     finally:

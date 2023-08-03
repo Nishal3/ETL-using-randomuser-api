@@ -13,10 +13,18 @@ def data_loader(data, db_url=None):
 
     data_vals = ", ".join(
         [
-            f"'{i}'" if isinstance(i, int) or isinstance(i, str) else f"ARRAY{i}"
+            f'"{str(i)}"'
+            if isinstance(i, int) or isinstance(i, str)
+            else "ARRAY"
+            + "["
+            + ", ".join([f'"{str(j)}"' if j else f'"None"' for j in i])
+            + "]"
             for i in data_vals
         ]
     )
+
+    data_vals = data_vals.replace("'", "''")
+    data_vals = data_vals.replace("\"", "'")
 
     if MODE:
         print(f"Table: {table}, Columns: {data_keys}, Values: {data_vals}")
@@ -34,7 +42,3 @@ def data_loader(data, db_url=None):
     connection.commit()
     connection.close()
 
-if __name__ == "__main__":
-    engine = create_engine("postgresql://postgres:k7UlpPL%251E#e@192.168.0.249:5432/test")
-    conn = engine.connect()
-    
