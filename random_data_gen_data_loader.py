@@ -24,7 +24,7 @@ def data_loader(data, db_url=None):
     )
 
     data_vals = data_vals.replace("'", "''")
-    data_vals = data_vals.replace("\"", "'")
+    data_vals = data_vals.replace('"', "'")
 
     if MODE:
         print(f"Table: {table}, Columns: {data_keys}, Values: {data_vals}")
@@ -41,4 +41,3 @@ def data_loader(data, db_url=None):
 
     connection.commit()
     connection.close()
-

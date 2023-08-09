@@ -1,0 +1,114 @@
+[
+    {
+        "gender": "male",
+        "name": {
+            "title": "Mr",
+            "first": "Abdirahman",
+            "last": "Friis"
+        },
+        "location": {
+            "street": {
+                "number": 345,
+                "name": "Stensberggata"
+            },
+            "city": "Vestnes",
+            "state": "Bergen",
+            "country": "Norway",
+            "postcode": "3043",
+            "coordinates": {
+                "latitude": "46.8960",
+                "longitude": "-19.7808"
+            },
+            "timezone": {
+                "offset": "+10:00",
+                "description": "Eastern Australia, Guam, Vladivostok"
+            }
+        },
+        "email": "abdirahman.friis@example.com",
+        "login": {
+            "uuid": "03f0de2d-34a7-489d-9dd2-6e53ed647dfc",
+            "username": "smallcat485",
+            "password": "strange",
+            "salt": "prOCGKYY",
+            "md5": "f701576d63be5b71b9df0be2561b5c73",
+            "sha1": "c22948c4dcc98514e7d290ee8e5db354e382de37",
+            "sha256": "758104d666e6b8b9b22ad20d5bdd1b01eb2ee1884b9963196d501adafbc46d92"
+        },
+        "dob": {
+            "date": "1997-02-06T03:14:25.118Z",
+            "age": 26
+        },
+        "registered": {
+            "date": "2008-10-12T15:59:17.199Z",
+            "age": 14
+        },
+        "phone": "88424897",
+        "cell": "94765221",
+        "id": {
+            "name": "FN",
+            "value": "06029736772"
+        },
+        "picture": {
+            "large": "https://randomuser.me/api/portraits/men/22.jpg",
+            "medium": "https://randomuser.me/api/portraits/med/men/22.jpg",
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/men/22.jpg"
+        },
+        "nat": "NO"
+    },
+    {
+        "gender": "male",
+        "name": {
+            "title": "Mr",
+            "first": "Isidor",
+            "last": "Worm"
+        },
+        "location": {
+            "street": {
+                "number": 6697,
+                "name": "Burgstra\u00dfe"
+            },
+            "city": "Nidda",
+            "state": "Bremen",
+            "country": "Germany",
+            "postcode": 57508,
+            "coordinates": {
+                "latitude": "-55.0916",
+                "longitude": "-158.5904"
+            },
+            "timezone": {
+                "offset": "+2:00",
+                "description": "Kaliningrad, South Africa"
+            }
+        },
+        "email": "isidor.worm@example.com",
+        "login": {
+            "uuid": "7f8a3948-4d44-446f-a34c-0b2b2281b2b3",
+            "username": "crazypeacock152",
+            "password": "catherin",
+            "salt": "qZsrqx9z",
+            "md5": "d791d36782fde2ae5aee6efe4acdecac",
+            "sha1": "f7661776bda904b1826424263f154126f2f8d32f",
+            "sha256": "a7efa879a714609227d1f63d4955aaa62868eaf620821920f44ce2fe8e7f032d"
+        },
+        "dob": {
+            "date": "1985-05-21T04:43:10.352Z",
+            "age": 38
+        },
+        "registered": {
+            "date": "2005-03-11T10:41:43.228Z",
+            "age": 18
+        },
+        "phone": "0115-1617167",
+        "cell": "0175-0961645",
+        "id": {
+            "name": "SVNR",
+            "value": "65 200585 W 101"
+        },
+        "picture": {
+            "large": "https://randomuser.me/api/portraits/men/72.jpg",
+            "medium": "https://randomuser.me/api/portraits/med/men/72.jpg",
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
+        },
+        "nat": "DE"
+    }
+]

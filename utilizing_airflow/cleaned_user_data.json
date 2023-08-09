@@ -1,0 +1,100 @@
+[
+    {
+        "main": {
+            "uuid": "03f0de2d-34a7-489d-9dd2-6e53ed647dfc",
+            "location_coordinates": [
+                "46.8960",
+                "-19.7808"
+            ],
+            "email": "abdirahman.friis@example.com",
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/men/22.jpg"
+        },
+        "login": {
+            "uuid": "03f0de2d-34a7-489d-9dd2-6e53ed647dfc",
+            "username": "smallcat485",
+            "password": "strange"
+        },
+        "location": {
+            "location_coordinates": [
+                "46.8960",
+                "-19.7808"
+            ],
+            "street_name": "Stensberggata",
+            "street_number": 345,
+            "city": "Vestnes",
+            "state": "Bergen",
+            "country": "Norway",
+            "post_code": "3043",
+            "timezone": "+10:00"
+        },
+        "identification": {
+            "email": "abdirahman.friis@example.com",
+            "id": [
+                "06029736772",
+                "FN"
+            ],
+            "name": "Abdirahman",
+            "last_name": "Friis",
+            "gender": "male",
+            "phone": "88424897",
+            "cell": "94765221",
+            "nationality": "NO",
+            "dob": "1997-02-06T03:14:25.118Z",
+            "registered": "2008-10-12T15:59:17.199Z"
+        },
+        "image": {
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/men/22.jpg",
+            "large": "https://randomuser.me/api/portraits/men/22.jpg",
+            "medium": "https://randomuser.me/api/portraits/med/men/22.jpg"
+        }
+    },
+    {
+        "main": {
+            "uuid": "7f8a3948-4d44-446f-a34c-0b2b2281b2b3",
+            "location_coordinates": [
+                "-55.0916",
+                "-158.5904"
+            ],
+            "email": "isidor.worm@example.com",
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
+        },
+        "login": {
+            "uuid": "7f8a3948-4d44-446f-a34c-0b2b2281b2b3",
+            "username": "crazypeacock152",
+            "password": "catherin"
+        },
+        "location": {
+            "location_coordinates": [
+                "-55.0916",
+                "-158.5904"
+            ],
+            "street_name": "Burgstra\u00dfe",
+            "street_number": 6697,
+            "city": "Nidda",
+            "state": "Bremen",
+            "country": "Germany",
+            "post_code": 57508,
+            "timezone": "+2:00"
+        },
+        "identification": {
+            "email": "isidor.worm@example.com",
+            "id": [
+                "65 200585 W 101",
+                "SVNR"
+            ],
+            "name": "Isidor",
+            "last_name": "Worm",
+            "gender": "male",
+            "phone": "0115-1617167",
+            "cell": "0175-0961645",
+            "nationality": "DE",
+            "dob": "1985-05-21T04:43:10.352Z",
+            "registered": "2005-03-11T10:41:43.228Z"
+        },
+        "image": {
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg",
+            "large": "https://randomuser.me/api/portraits/men/72.jpg",
+            "medium": "https://randomuser.me/api/portraits/med/men/72.jpg"
+        }
+    }
+]

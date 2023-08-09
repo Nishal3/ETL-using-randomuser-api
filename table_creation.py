@@ -87,5 +87,3 @@ conn.execute(text(query))
 conn.commit()
 
 conn.close()
-
-

@@ -11,7 +11,8 @@ from random_data_gen_producer import production_scheduler as producer
 default_args = {
     "owner": "Nishal",
     "depends_on_past": False,
-    "start_date": datetime(2023, 7, 30),
+    "start_date": datetime.now(),
+    "email": ['nepalnishal4@gmail.com'],
     "email_on_failure": True,
     "email_on_retry": True,
     "retries": 1,
@@ -22,7 +23,7 @@ dag = DAG(
     "user_data_dag",
     default_args=default_args,
     description="user_data_dag",
-    # schedule_interval=timedelta(hours=1)
+    schedule=None
 )
 
 production_task = PythonOperator(
