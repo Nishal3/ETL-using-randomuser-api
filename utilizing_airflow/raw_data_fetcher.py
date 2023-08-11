@@ -4,8 +4,10 @@ import requests
 import time
 
 
-def data_fetcher(data_to_load=1, link="https://randomuser.me/api/"):
-    with open("raw_user_data.json", "w") as output_file:
+def data_fetcher(data_to_load=0, link="https://randomuser.me/api/"):
+    if not data_to_load:
+        data_to_load = random.randint(1, 150)
+    with open("/home/ubuntu/ETL-using-randomuser-api/utilizing_airflow/raw_user_data.json", "w") as output_file:
         final_output = []
         while data_to_load > 0:
             api = requests.get(link)

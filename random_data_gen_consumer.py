@@ -4,7 +4,6 @@ import json
 import os
 from random_data_gen_data_loader import data_loader
 import time
-import sys
 
 MODE = os.getenv("DEV")
 

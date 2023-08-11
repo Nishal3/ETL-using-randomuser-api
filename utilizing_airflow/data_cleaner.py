@@ -158,13 +158,13 @@ def assemble_data(results) -> dict:
 
 
 def clean_data():
-    with open("raw_user_data.json", "r") as file_input:
+    with open("/home/ubuntu/ETL-using-randomuser-api/utilizing_airflow/raw_user_data.json", "r") as file_input:
         raw_data = json.load(file_input)
         results = []
         for i in raw_data:
             results.append(assemble_data(i))
 
-    with open("cleaned_user_data.json", "w") as output_file:
+    with open("/home/ubuntu/ETL-using-randomuser-api/utilizing_airflow/cleaned_user_data.json", "w") as output_file:
         json.dump(results, output_file, indent=4)
 
 

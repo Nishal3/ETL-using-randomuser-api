@@ -2,7 +2,6 @@ from confluent_kafka import Producer
 import json
 import os
 import sys
-import time
 
 sys.path.insert(1, "/home/ubuntu/ETL-using-randomuser-api/")
 
@@ -38,7 +37,7 @@ def production_loop(producer, results):
 def produce_data():
     producer = Producer(config)
 
-    with open("cleaned_user_data.json", "r") as data:
+    with open("/home/ubuntu/ETL-using-randomuser-api/utilizing_airflow/cleaned_user_data.json", "r") as data:
         results = json.load(data)
 
     for i in results:
