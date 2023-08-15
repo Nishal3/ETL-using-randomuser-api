@@ -41,4 +41,3 @@ def data_loader(data, db_url=None):
 
     connection.commit()
     connection.close()
-

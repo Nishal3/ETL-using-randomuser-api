@@ -1,11 +1,15 @@
-from confluent_kafka import Consumer
-from kafka_config.config import config
 import json
+import sys
 import os
-from random_data_gen_data_loader import data_loader
 import time
+from confluent_kafka import Consumer
+
+sys.path.insert(1, "/home/ubuntu/ETL-using-randomuser-api/")
+from kafka_config.config import config
+from data_loader import data_loader
 
 MODE = os.getenv("DEV")
+
 
 USERNAME = "postgres"
 PASSWORD = None
@@ -64,7 +68,7 @@ def consume_data():
     try:
         time_start = time.time()
         time_til_start = 0
-        while time_til_start < 15:
+        while time_til_start < 10:
             time_til_start = time.time() - time_start
             event = consumer.poll(1.0)
             if event is None:
