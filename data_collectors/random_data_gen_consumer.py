@@ -12,21 +12,22 @@ PASSWORD = None
 IP = None
 
 with open(
-    "/home/ubuntu/ETL-using-randomuser-api/kafka_config/password.txt", "r"
+    "/home/nish/bin/de_projects/ETL-using-randomuser-api/kafka_config/password.txt", "r"
 ) as password:
     file_input = password.readline()
     if file_input:
         PASSWORD = file_input.rstrip("\n")
 
 with open(
-    "/home/ubuntu/ETL-using-randomuser-api/kafka_config/ip_address.txt", "r"
+    "/home/nish/bin/de_projects/ETL-using-randomuser-api/kafka_config/ip_address.txt",
+    "r",
 ) as ip_address:
     file_input = ip_address.readline()
     if file_input:
         IP = file_input.rstrip("\n")
 
 with open(
-    "/home/ubuntu/ETL-using-randomuser-api/kafka_config/username.txt", "r"
+    "/home/nish/bin/de_projects/ETL-using-randomuser-api/kafka_config/username.txt", "r"
 ) as username:
     file_input = username.readline()
     if file_input:
@@ -71,7 +72,7 @@ def consume_data():
                 continue
             else:
                 data_dict = procure_data(event)
-                url = f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/user_data"
+                url = f"postgresql://{USERNAME}:{PASSWORD}@{IP}:5432/test"
                 data_loader(
                     data_dict,
                     url,
