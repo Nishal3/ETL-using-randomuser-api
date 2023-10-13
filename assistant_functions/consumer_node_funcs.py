@@ -3,10 +3,11 @@ import sys
 from confluent_kafka import Consumer
 import os
 
-sys.path.insert(1, "/home/nish/bin/de_projects/ETL-using-randomuser-api")
-from kafka_config.config import config as main_config
-
+HOME = os.getenv("HOME")
 MODE = os.getenv("DEV")
+
+sys.path.insert(1, HOME + "/bin/de_projects/ETL-using-randomuser-api")
+from config.config import config as main_config
 
 
 def set_configs():

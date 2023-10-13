@@ -3,16 +3,17 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 import sys
 
+HOME = sys.getenv("HOME")
 
-sys.path.insert(1, "/home/ubuntu/ETL-using-randomuser-api/")
-from random_data_gen_consumer import consume_data as consumer
-from random_data_gen_producer import production_scheduler as producer
+sys.path.insert(1, HOME + "/bin/de_projects/ETL-using-randomuser-api/")
+from data_collectors.random_data_gen_consumer import consume_data as consumer
+from data_collectors.random_data_gen_producer import production_scheduler as producer
 
 default_args = {
     "owner": "Nishal",
     "depends_on_past": False,
     "start_date": datetime.now(),
-    "email": ['nepalnishal4@gmail.com'],
+    "email": ["nepalnishal4@gmail.com"],
     "email_on_failure": True,
     "email_on_retry": True,
     "retries": 1,
@@ -23,7 +24,7 @@ dag = DAG(
     "user_data_dag",
     default_args=default_args,
     description="user_data_dag",
-    schedule=None
+    schedule=None,
 )
 
 production_task = PythonOperator(

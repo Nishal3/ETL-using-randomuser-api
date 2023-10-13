@@ -1,5 +1,4 @@
 from confluent_kafka import Producer
-from kafka_config.config import config
 import requests
 import json
 import time
@@ -8,6 +7,10 @@ import os
 import sys
 
 MODE = os.getenv("DEV")
+HOME = os.getenv("HOME")
+
+sys.path.insert(1, HOME + "/bin/de_projects/ETL-using-randomuser-api/")
+from config.config import config
 
 
 def extraction(val: dict, key1: str, key2: str = None) -> dict:

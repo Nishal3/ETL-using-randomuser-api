@@ -1,7 +1,7 @@
 from confluent_kafka import Consumer
-from kafka_config.config import config
 import json
 import os
+import sys
 from random_data_gen_data_loader import data_loader
 import time
 
@@ -10,16 +10,21 @@ MODE = os.getenv("DEV")
 USERNAME = "postgres"
 PASSWORD = None
 IP = None
+HOME = os.getenv("HOME")
+
+sys.path.insert(1, HOME + "/bin/de_projects/ETL-using-randomuser-api/")
+from config.config import config
 
 with open(
-    "/home/nish/bin/de_projects/ETL-using-randomuser-api/kafka_config/password.txt", "r"
+    HOME + "/bin/de_projects/ETL-using-randomuser-api/config/password.txt",
+    "r",
 ) as password:
     file_input = password.readline()
     if file_input:
         PASSWORD = file_input.rstrip("\n")
 
 with open(
-    "/home/nish/bin/de_projects/ETL-using-randomuser-api/kafka_config/ip_address.txt",
+    HOME + "/bin/de_projects/ETL-using-randomuser-api/config/ip_address.txt",
     "r",
 ) as ip_address:
     file_input = ip_address.readline()
@@ -27,7 +32,8 @@ with open(
         IP = file_input.rstrip("\n")
 
 with open(
-    "/home/nish/bin/de_projects/ETL-using-randomuser-api/kafka_config/username.txt", "r"
+    HOME + "/bin/de_projects/ETL-using-randomuser-api/config/username.txt",
+    "r",
 ) as username:
     file_input = username.readline()
     if file_input:
