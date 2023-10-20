@@ -108,8 +108,8 @@ Thanks for checking out my project!
 
 [DOCKER_CE_INSTALL]: https://docs.docker.com/engine/install/ubuntu/
 
-[CREATE_CLUSTER]: https://githubusercontent.com/Nishal3/ETL-using-randomuser-api/assets/
+[CREATE_CLUSTER]: https://raw.githubusercontent.com/Nishal3/ETL-using-randomuser-api/assets/create_cluster.jpg
 
-[CREATE_TOPIC]: https://githubusercontent.com/Nishal3/ETL-using-randomuser-api/assets/
+[CREATE_TOPIC]: https://raw.githubusercontent.com/Nishal3/ETL-using-randomuser-api/assets/create_topics.jpg
 
-[CREATE_CLIENT]: https://githubusercontent.com/Nishal3/ETL-using-randomuser-api/assets/
+[CREATE_CLIENT]: https://raw.githubusercontent.com/Nishal3/ETL-using-randomuser-api/assets/create_client.jpg
