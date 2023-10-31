@@ -120,7 +120,6 @@ def userd_dag():
             data_to_load -= 1
             time.sleep(0.01)
 
-        # Try to make logger log to file, would probably make things easy
         if not final_output:
             logger.error("`final_output` has no value.")
             sys.exit(1)
