@@ -4,15 +4,16 @@ Python version 3.10 and Ubuntu 22.04 were used for this and recomended.
 ![ETL]
 Simple ETL using Apache Airflow, Kafka and AWS using the [randomuser API][API]. Messages are delivered every 5 minutes and data output is randomized from 1 to 150 inputs. 
 
-## Tools Used:  
+## Technology Used:  
   * Apache Kafka
   * Apache Airflow 
+  * PostgreSQL Database
+  * Bash
   * AWS EC2
   * AWS RDS
-  * PostgreSQL Database
 
 ## Setup
-As mentioned before make sure you are using Python 3.10, >=3.6 might also work, but not advised. First install all of the dependencies. Clone this repo into `~/bin/de_projects/` for this to work out best. Otherwise, you will need to edit `userd_dag.py` and the files in the `data_collectors/` directory to reflect the location of this project.
+As mentioned before make sure you are using Python 3.10, >=3.6 might also work, but not advised. Clone this repo into `~/bin/de_projects/` for this to work out best. Otherwise, you will need to edit some. First install all of the dependencies.
 
 ### Python Requirements
 
@@ -65,7 +66,7 @@ config = {
 ```
 
 ### Database
-You can use a simple postgres container using docker. If you don't have docker, follow [this guide][DOCKER_CE_INSTALL] to install Docker CE. If you want to go another route, you could use the sink from confluent cloud and attatch it to a RDS instance. In that case all of this database management stuff is not necessary, and the `consumer_node` part of `userd_dag` and the `random_data_gen_consumer` file is not necessary.
+You can run a simple postgres container using docker. If you don't have docker, follow [this guide][DOCKER_CE_INSTALL] to install Docker CE. If you want to go another route, you could use the sink from confluent cloud and attatch it to a RDS instance. In that case all of this database management stuff is not necessary, and the `consumer_node` part of `userd_dag` and the `random_data_gen_consumer` file is not necessary.
 
 ``` bash
 docker run --name <NAME_OF_CONTAINER> -e POSTGRES_PASSWORD=<YOUR_PASSWORD> -p 5432:5432 -d postgres:latest
@@ -79,6 +80,14 @@ Go into the `config/` directory in the main project. Then, you can add username.
 echo postgres > username.txt
 echo localhost > ip_address.txt
 echo <YOUR_POSTRGRESQL_PASSWORD> > password.txt
+```
+
+You first need to set up your database and tables, for this run the `table_creation.py` file located in the `assistant_functions` directory, if everything was set up correctly, you should get this output:
+``` bash
+python table_creation.py
+"CONNECTED"
+"SUCCESSFULLY CREATED DATABASE"
+"SUCCESSFULLY CREATED TABLES"
 ```
 
 ## Running the DAGs
